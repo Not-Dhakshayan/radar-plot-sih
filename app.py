@@ -27,6 +27,19 @@ st.markdown(
     .css-1dp5vir, .css-1vbkfke {
         color: #0077b5; /* LinkedIn blue */
     }
+
+    /* Message Styling */
+    .custom-message {
+        color: #0077b5; /* LinkedIn blue */
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    /* Dropdown Styling */
+    .css-1wa3eu0 {
+        background-color: #f0f0f0; /* Light grey background for dropdown */
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -38,7 +51,9 @@ alumni_data = {
     'Pradip': {'CGPA': 9.0, 'Skills Count': 6, 'Experience (years)': 5, 'Won Competitions': 4},
     'Chris': {'CGPA': 7.8, 'Skills Count': 8, 'Experience (years)': 4, 'Won Competitions': 5},
     'Yoga Reddy': {'CGPA': 6.5, 'Skills Count': 5, 'Experience (years)': 2, 'Won Competitions': 3},
-    
+    'John Raj': {'CGPA': 6.5, 'Skills Count': 5, 'Experience (years)': 2, 'Won Competitions': 3},
+    'Hari Krishan': {'CGPA': 9.5, 'Skills Count': 5, 'Experience (years)': 2, 'Won Competitions': 5},
+    'Aruna': {'CGPA': 7.5, 'Skills Count': 8, 'Experience (years)': 3, 'Won Competitions': 7},
 }
 
 # Function to plot radar chart
@@ -66,9 +81,14 @@ def plot_radar(alumni1, alumni2, categories, data1, data2):
 # Streamlit App
 st.title("Radar Plot: Alumni Comparison")
 
-# Dropdowns for selecting alumni
-alumni1 = st.selectbox("Select Alumni 1", options=list(alumni_data.keys()))
-alumni2 = st.selectbox("Select Alumni 2", options=list(alumni_data.keys()), index=1)
+# Custom message for Aruna
+st.markdown('<p class="custom-message">Hello Aruna, who’s profile would you like to explore alongside yours?</p>', unsafe_allow_html=True)
+
+# "Aruna" as the fixed alumni
+alumni1 = 'Aruna'
+
+# Dropdown for selecting the other alumni
+alumni2 = st.selectbox("Select Alumni to explore with Aruna", options=[alumni for alumni in alumni_data.keys() if alumni != 'Aruna'])
 
 # Categories for radar plot
 categories = ['CGPA', 'Skills Count', 'Experience (years)', 'Won Competitions']
